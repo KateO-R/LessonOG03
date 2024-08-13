@@ -25,6 +25,9 @@ font = pygame.font.Font(None, 36)
 hits = 0
 misses = 0
 
+target_speed_x = 1
+target_speed_y = 1
+
 running = True
 while running:
     screen.fill(color)
@@ -39,6 +42,15 @@ while running:
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
             else:
                 misses += 1
+
+    target_x += target_speed_x
+    target_y += target_speed_y
+
+    if target_x <= 0 or target_x >= SCREEN_WIDTH - target_width:
+        target_speed_x = -target_speed_x
+    if target_y <= 0 or target_y >= SCREEN_HEIGHT - target_height:
+        target_speed_y = -target_speed_y
+
 
     hits_text = font.render(f'Hits: {hits}', True, (0, 255, 0))
     misses_text = font.render(f'Misses: {misses}', True, (255, 0, 0))
