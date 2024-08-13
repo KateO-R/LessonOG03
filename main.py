@@ -11,7 +11,7 @@ pygame.display.set_caption('Shooting gallery Game')
 icon = pygame.image.load("img/gun-target-icon-vector-illustration-template-design_757387-1537.jpg")
 pygame.display.set_icon(icon)
 
-target_img = pygame.image.load("img/")
+target_img = pygame.image.load("img/target.png")
 target_width = 80
 target_height = 80
 
