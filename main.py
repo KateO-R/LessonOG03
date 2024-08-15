@@ -20,11 +20,13 @@ target_y = random.randint(0, SCREEN_HEIGHT - target_height)
 
 color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
+# Initializing the font
 font = pygame.font.Font(None, 36)
 
 hits = 0
 misses = 0
 
+# Setting target speed
 target_speed_x = 1
 target_speed_y = 1
 
@@ -37,24 +39,28 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             if target_x < mouse_x < target_x + target_width and target_y < mouse_y < target_y + target_height:
-                hits +=1
+                hits +=1 # increasing the hits
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
             else:
-                misses += 1
+                misses += 1 # increasing the misses
 
+# Moving the target
     target_x += target_speed_x
     target_y += target_speed_y
 
+# Checking if the target has reached the edge of the screen. If so, change direction
     if target_x <= 0 or target_x >= SCREEN_WIDTH - target_width:
         target_speed_x = -target_speed_x
     if target_y <= 0 or target_y >= SCREEN_HEIGHT - target_height:
         target_speed_y = -target_speed_y
 
 
+# Creating text box for hits and misses
     hits_text = font.render(f'Hits: {hits}', True, (0, 255, 0))
     misses_text = font.render(f'Misses: {misses}', True, (255, 0, 0))
 
+# Placing text on the screen
     screen.blit(hits_text, (10, 10))
     screen.blit(misses_text, (10, 50))
 
